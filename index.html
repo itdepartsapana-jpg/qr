@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sapana Village Lodge — Digital Menu</title>
+  <style>
+    :root{--bg:#fff7d1;--card:#fffaf0;--accent:#d4a017;--muted:#6b6455;--glass:rgba(255,250,230,0.7)}
+    *{box-sizing:border-box}
+    body{font-family:Inter, system-ui; margin:0; background:linear-gradient(180deg,#fff3b8,var(--bg)); color:#0f172a}
+    header{background:var(--card);padding:18px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #e6eef0}
+    .logo .mark{width:56px;height:56px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
+    .title h1{margin:0;font-size:18px}
+    .title p{margin:0;color:var(--muted);font-size:13px}
+    .reception{margin-left:auto;text-align:right;color:var(--muted);font-size:14px}
+    main{padding:22px}
+    .hero{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
+    .hero h2{margin:0 0 8px 0;font-size:22px}
+    .hero p{margin:0;color:var(--muted)}
+    .categories{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .cat{padding:8px 10px;border-radius:10px;border:1px solid #e6eef0;background:#fff;cursor:pointer}
+    .cat.active{background:var(--accent);color:#fff}
+    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(15,23,42,0.06);border:1px solid #eef6f6;display:flex;flex-direction:column}
+    .card .media{height:160px;background-size:cover;background-position:center}
+    .card .body{padding:14px;display:flex;flex-direction:column;gap:8px}
+    .row{display:flex;justify-content:space-between;align-items:center}
+    .name{font-weight:600}
+    .desc{font-size:13px;color:var(--muted)}
+    .price{font-weight:700;color:var(--accent)}
+    footer{padding:18px 20px;color:var(--muted);font-size:13px;text-align:center}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo"><div class="mark">SV</div></div>
+    <div class="title">
+      <h1>Sapana Village Lodge</h1>
+      <p>Eco-lodge — Sauraha, Chitwan · Near Rapti River</p>
+    </div>
+    <div class="reception">
+      Reception / Counter<br><strong>+977-56-*****</strong>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="left">
+        <h2>Digital Menu</h2>
+        <p>Simple, clean, professional layout. Prices in NPR (₨).</p>
+        <div class="categories" id="categories">
+          <div class="cat active" data-cat="all">All</div>
+          <div class="cat" data-cat="breakfast">Breakfast</div>
+          <div class="cat" data-cat="mains">Mains</div>
+          <div class="cat" data-cat="snacks">Snacks</div>
+          <div class="cat" data-cat="drinks">Drinks</div>
+          <div class="cat" data-cat="dessert">Dessert</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="menu-grid" id="menuGrid"></section>
+  </main>
+
+  <footer>Sapana Village Lodge — Sustainable tourism & ethical experiences.</footer>
+
+<script>
+const menuItems=[
+ {id:1,name:"Breakfast Set A",category:"breakfast",price:450,desc:"Local breakfast with eggs and fruit.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+ {id:2,name:"Breakfast Set B",category:"breakfast",price:480,desc:"Pancake, honey and tea.",img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
+ {id:3,name:"Breakfast Set C",category:"breakfast",price:520,desc:"Omelette with garden herbs.",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8"},
+
+ {id:4,name:"Tharu Thali",category:"mains",price:1199,desc:"Authentic Tharu set meal.",img:"https://images.unsplash.com/photo-1543352634-0b2f9b1b1d6a"},
+ {id:5,name:"Grilled Chicken Set",category:"mains",price:899,desc:"Served with rice and vegetables.",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
+ {id:6,name:"Veg Curry Plate",category:"mains",price:750,desc:"Seasonal vegetable curry.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+
+ {id:7,name:"Momos (6 pcs)",category:"snacks",price:350,desc:"Steamed momo with achar.",img:"https://images.unsplash.com/photo-1544025162-d76694265947"},
+ {id:8,name:"French Fries",category:"snacks",price:250,desc:"Crispy and golden.",img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
+ {id:9,name:"Tharu Snacks Mix",category:"snacks",price:420,desc:"Local mixed bites.",img:"https://images.unsplash.com/photo-1526318472351-bc6fa97cb147"},
+
+ {id:10,name:"Fresh Lemon Soda",category:"drinks",price:199,desc:"Refreshing soda.",img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87"},
+ {id:11,name:"Mint Cooler",category:"drinks",price:220,desc:"Fresh mint drink.",img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc"},
+ {id:12,name:"Iced Tea",category:"drinks",price:180,desc:"House-made iced tea.",img:"https://images.unsplash.com/photo-1497534446932-c925b458314e"},
+
+ {id:13,name:"Fruit Yogurt Bowl",category:"dessert",price:350,desc:"Seasonal fruits with yogurt.",img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352"},
+ {id:14,name:"Chocolate Cake Slice",category:"dessert",price:300,desc:"Soft chocolate cake.",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587"},
+ {id:15,name:"Ice Cream Trio",category:"dessert",price:320,desc:"Three-flavor combo.",img:"https://images.unsplash.com/photo-1505253716362-afaea1d3d1af"}
+];
+
+const menuGrid=document.getElementById('menuGrid');
+const categories=document.getElementById('categories');
+
+function card(i){return `
+<article class="card" data-cat="${i.category}">
+ <div class="media" style="background-image:url('${i.img}')"></div>
+ <div class="body">
+  <div class="row">
+    <div><div class="name">${i.name}</div><div class="desc">${i.desc}</div></div>
+    <div class="price">₨ ${i.price}</div>
+  </div>
+ </div>
+</article>`}
+
+function render(items){menuGrid.innerHTML=items.map(card).join('')}
+render(menuItems)
+
+categories.addEventListener('click',e=>{
+ const c=e.target.closest('.cat');if(!c)return;
+ document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
+ c.classList.add('active');
+ const cat=c.dataset.cat;
+ if(cat==='all')render(menuItems);
+ else render(menuItems.filter(i=>i.category===cat));
+});
+</script>
+</body>
+</html>
