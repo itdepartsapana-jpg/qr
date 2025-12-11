@@ -5,113 +5,556 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Sapana Village Lodge — Digital Menu</title>
   <style>
-    :root{--bg:#fff7d1;--card:#fffaf0;--accent:#d4a017;--muted:#6b6455;--glass:rgba(255,250,230,0.7)}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui; margin:0; background:linear-gradient(180deg,#fff3b8,var(--bg)); color:#0f172a}
-    header{background:var(--card);padding:18px 20px;display:flex;align-items:center;gap:16px;border-bottom:1px solid #e6eef0}
-    .logo .mark{width:56px;height:56px;border-radius:10px;background:var(--accent);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:20px}
-    .title h1{margin:0;font-size:18px}
-    .title p{margin:0;color:var(--muted);font-size:13px}
-    .reception{margin-left:auto;text-align:right;color:var(--muted);font-size:14px}
-    main{padding:22px}
-    .hero{display:flex;flex-wrap:wrap;gap:18px;align-items:center}
-    .hero h2{margin:0 0 8px 0;font-size:22px}
-    .hero p{margin:0;color:var(--muted)}
-    .categories{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
-    .cat{padding:8px 10px;border-radius:10px;border:1px solid #e6eef0;background:#fff;cursor:pointer}
-    .cat.active{background:var(--accent);color:#fff}
-    .menu-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;margin-top:18px}
-    .card{background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 6px 18px rgba(15,23,42,0.06);border:1px solid #eef6f6;display:flex;flex-direction:column}
-    .card .media{height:160px;background-size:cover;background-position:center}
-    .card .body{padding:14px;display:flex;flex-direction:column;gap:8px}
-    .row{display:flex;justify-content:space-between;align-items:center}
-    .name{font-weight:600}
-    .desc{font-size:13px;color:var(--muted)}
-    .price{font-weight:700;color:var(--accent)}
-    footer{padding:18px 20px;color:var(--muted);font-size:13px;text-align:center}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --primary: #d4a017;
+      --primary-dark: #b8890f;
+      --bg: #fefdfb;
+      --card: #ffffff;
+      --text: #1a1a1a;
+      --text-muted: #6b6455;
+      --border: #e8e5df;
+      --shadow: rgba(212, 160, 23, 0.1);
+      --success: #059669;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, #fff9f0 0%, #fef6e8 100%);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* Header */
+    header {
+      background: var(--card);
+      padding: 1.25rem 1.5rem;
+      box-shadow: 0 2px 12px var(--shadow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 2px solid var(--primary);
+    }
+
+    .header-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo-mark {
+      width: 60px;
+      height: 60px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 24px;
+      box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+    }
+
+    .logo-text h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .logo-text p {
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .header-actions {
+      margin-left: auto;
+      display: flex;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .contact-info {
+      text-align: right;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+    }
+
+    .contact-info strong {
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    /* Main */
+    main {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .hero h2 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle {
+      font-size: 1.125rem;
+      color: var(--text-muted);
+    }
+
+    /* Categories */
+    .categories {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 2rem;
+    }
+
+    .cat {
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--card);
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s;
+      font-size: 0.95rem;
+    }
+
+    .cat:hover {
+      border-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .cat.active {
+      background: var(--primary);
+      color: white;
+      border-color: var(--primary);
+      box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+    }
+
+    /* Filters */
+    .filters {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-group {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .filter-group label {
+      font-weight: 600;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    select {
+      padding: 0.5rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    select:focus {
+      outline: none;
+      border-color: var(--primary);
+    }
+
+    .results-info {
+      margin-left: auto;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Menu Grid */
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 1.5rem;
+      animation: fadeIn 0.5s;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Card */
+    .card {
+      background: var(--card);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 32px rgba(212, 160, 23, 0.2);
+    }
+
+    .card-media {
+      height: 200px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-media::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 50%;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: var(--success);
+      color: white;
+      padding: 0.375rem 0.75rem;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      z-index: 1;
+    }
+
+    .card-body {
+      padding: 1.25rem;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-name {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.25rem;
+    }
+
+    .card-category {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .card-price {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .card-desc {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+      line-height: 1.5;
+    }
+
+    .card-footer {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .quick-view {
+      flex: 1;
+      padding: 0.75rem;
+      background: var(--bg);
+      border: 2px solid var(--primary);
+      color: var(--primary);
+      border-radius: 10px;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+    }
+
+    .quick-view:hover {
+      background: var(--primary);
+      color: white;
+    }
+
+    /* Cart Sidebar */
+    /* Removed cart functionality */
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.5);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 999;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Toast */
+    /* Removed toast notifications */
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 2rem 1.5rem;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-content {
+        justify-content: center;
+      }
+
+      .header-actions {
+        margin-left: 0;
+        width: 100%;
+        justify-content: center;
+      }
+
+      #searchInput {
+        width: 150px;
+      }
+
+      #searchInput:focus {
+        width: 200px;
+      }
+
+      .hero h2 {
+        font-size: 2rem;
+      }
+
+      .menu-grid {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 1rem;
+      }
+
+      .cart-sidebar {
+        width: 100%;
+        right: -100%;
+      }
+
+      .filters {
+        justify-content: center;
+      }
+
+      .results-info {
+        margin-left: 0;
+        width: 100%;
+        text-align: center;
+      }
+    }
   </style>
 </head>
 <body>
   <header>
-    <div class="logo"><div class="mark">SV</div></div>
-    <div class="title">
-      <h1>Sapana Village Lodge</h1>
-      <p>Eco-lodge — Sauraha, Chitwan · Near Rapti River</p>
-    </div>
-    <div class="reception">
-      Reception / Counter<br><strong>+977-56-*****</strong>
+    <div class="header-content">
+      <div class="logo">
+        <div class="logo-mark">SV</div>
+        <div class="logo-text">
+          <h1>Sapana Village Lodge</h1>
+          <p>Sauraha, Chitwan • Eco-lodge near Rapti River</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="contact-info">
+          Reception<br><strong>+977-56-580116</strong>
+        </div>
+      </div>
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <div class="left">
-        <h2>Digital Menu</h2>
-        <p>Simple, clean, professional layout. Prices in NPR (₨).</p>
-        <div class="categories" id="categories">
-          <div class="cat active" data-cat="all">Alls</div>
-          <div class="cat" data-cat="breakfast">Breakfast</div>
-          <div class="cat" data-cat="mains">Mains</div>
-          <div class="cat" data-cat="snacks">Snacks</div>
-          <div class="cat" data-cat="drinks">Drinks</div>
-          <div class="cat" data-cat="dessert">Dessert</div>
-        </div>
-      </div>
+      <h2>Our Digital Menu</h2>
+      <p class="hero-subtitle">Authentic Tharu cuisine & international favorites</p>
     </section>
+
+    <div class="categories" id="categories">
+      <div class="cat active" data-cat="all">All Items</div>
+      <div class="cat" data-cat="breakfast">🌅 Breakfast</div>
+      <div class="cat" data-cat="mains">🍛 Mains</div>
+      <div class="cat" data-cat="snacks">🥟 Snacks</div>
+      <div class="cat" data-cat="drinks">🍹 Drinks</div>
+      <div class="cat" data-cat="dessert">🍰 Dessert</div>
+    </div>
+
+    <div class="filters">
+      <div class="filter-group">
+        <label for="sortBy">Sort by:</label>
+        <select id="sortBy">
+          <option value="default">Default</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name (A-Z)</option>
+        </select>
+      </div>
+      <div class="results-info" id="resultsInfo">Showing 15 items</div>
+    </div>
 
     <section class="menu-grid" id="menuGrid"></section>
   </main>
 
-  <footer>Sapana Village Lodge — Sustainable tourism & ethical experiences.</footer>
+  <footer>
+    <p><strong>Sapana Village Lodge</strong> — Sustainable tourism & ethical wildlife experiences</p>
+    <p>Reception: +977-56-580116 • Open daily 6:00 AM - 10:00 PM</p>
+  </footer>
 
-<script>
-const menuItems=[
- {id:1,name:"Breakfast Set A",category:"breakfast",price:450,desc:"Local breakfast with eggs and fruit.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
- {id:2,name:"Breakfast Set B",category:"breakfast",price:480,desc:"Pancake, honey and tea.",img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
- {id:3,name:"Breakfast Set C",category:"breakfast",price:520,desc:"Omelette with garden herbs.",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8"},
+  <div class="overlay" id="overlay"></div>
 
- {id:4,name:"Tharu Thali",category:"mains",price:1199,desc:"Authentic Tharu set meal.",img:"https://images.unsplash.com/photo-1543352634-0b2f9b1b1d6a"},
- {id:5,name:"Grilled Chicken Set",category:"mains",price:899,desc:"Served with rice and vegetables.",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
- {id:6,name:"Veg Curry Plate",category:"mains",price:750,desc:"Seasonal vegetable curry.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836"},
+  <script>
+    const menuItems = [
+      {id:1,name:"Breakfast Set A",category:"breakfast",price:450,desc:"Local breakfast with eggs, fresh fruit, and homemade bread.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836",popular:true},
+      {id:2,name:"Breakfast Set B",category:"breakfast",price:480,desc:"Fluffy pancakes with honey and Nepali tea.",img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
+      {id:3,name:"Breakfast Set C",category:"breakfast",price:520,desc:"Garden herb omelette with toast and juice.",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8"},
+      {id:4,name:"Tharu Thali",category:"mains",price:1199,desc:"Authentic Tharu set meal with traditional sides.",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe",popular:true},
+      {id:5,name:"Grilled Chicken Set",category:"mains",price:899,desc:"Tender grilled chicken with steamed rice and vegetables.",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
+      {id:6,name:"Veg Curry Plate",category:"mains",price:750,desc:"Seasonal vegetable curry with rice and lentils.",img:"https://images.unsplash.com/photo-1588166524941-3bf61a9c41db"},
+      {id:7,name:"Dal Bhat Set",category:"mains",price:680,desc:"Traditional Nepali meal with rice, lentils, and curry.",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c"},
+      {id:8,name:"Momos (6 pcs)",category:"snacks",price:350,desc:"Steamed dumplings with spicy achar sauce.",img:"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb",popular:true},
+      {id:9,name:"French Fries",category:"snacks",price:250,desc:"Crispy golden fries with ketchup.",img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
+      {id:10,name:"Tharu Snacks Mix",category:"snacks",price:420,desc:"Assorted local bites and crispy treats.",img:"https://images.unsplash.com/photo-1599490659213-e2b9527bd087"},
+      {id:11,name:"Samosa (3 pcs)",category:"snacks",price:280,desc:"Crispy pastry filled with spiced potatoes.",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950"},
+      {id:12,name:"Fresh Lemon Soda",category:"drinks",price:199,desc:"Refreshing homemade lemon soda.",img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87"},
+      {id:13,name:"Mint Cooler",category:"drinks",price:220,desc:"Cool mint drink with lime and ice.",img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc"},
+      {id:14,name:"Iced Tea",category:"drinks",price:180,desc:"House-made iced tea with lemon.",img:"https://images.unsplash.com/photo-1497534446932-c925b458314e"},
+      {id:15,name:"Mango Lassi",category:"drinks",price:240,desc:"Sweet yogurt drink with fresh mango.",img:"https://images.unsplash.com/photo-1587495545332-d4114e9da2e3"},
+      {id:16,name:"Fruit Yogurt Bowl",category:"dessert",price:350,desc:"Seasonal fruits with creamy yogurt and honey.",img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352"},
+      {id:17,name:"Chocolate Cake Slice",category:"dessert",price:300,desc:"Rich, moist chocolate cake.",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587"},
+      {id:18,name:"Ice Cream Trio",category:"dessert",price:320,desc:"Three scoops - vanilla, chocolate, strawberry.",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"}
+    ];
 
- {id:7,name:"Momos (6 pcs)",category:"snacks",price:350,desc:"Steamed momo with achar.",img:"https://images.unsplash.com/photo-1544025162-d76694265947"},
- {id:8,name:"French Fries",category:"snacks",price:250,desc:"Crispy and golden.",img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
- {id:9,name:"Tharu Snacks Mix",category:"snacks",price:420,desc:"Local mixed bites.",img:"https://images.unsplash.com/photo-1526318472351-bc6fa97cb147"},
+    let currentCategory = 'all';
+    let currentSort = 'default';
 
- {id:10,name:"Fresh Lemon Soda",category:"drinks",price:199,desc:"Refreshing soda.",img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87"},
- {id:11,name:"Mint Cooler",category:"drinks",price:220,desc:"Fresh mint drink.",img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc"},
- {id:12,name:"Iced Tea",category:"drinks",price:180,desc:"House-made iced tea.",img:"https://images.unsplash.com/photo-1497534446932-c925b458314e"},
+    const menuGrid = document.getElementById('menuGrid');
+    const categories = document.getElementById('categories');
+    const sortBy = document.getElementById('sortBy');
+    const resultsInfo = document.getElementById('resultsInfo');
 
- {id:13,name:"Fruit Yogurt Bowl",category:"dessert",price:350,desc:"Seasonal fruits with yogurt.",img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352"},
- {id:14,name:"Chocolate Cake Slice",category:"dessert",price:300,desc:"Soft chocolate cake.",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587"},
- {id:15,name:"Ice Cream Trio",category:"dessert",price:320,desc:"Three-flavor combo.",img:"https://images.unsplash.com/photo-1505253716362-afaea1d3d1af"}
-];
+    function createCard(item) {
+      return `
+        <article class="card" data-id="${item.id}">
+          <div class="card-media" style="background-image:url('${item.img}')">
+            ${item.popular ? '<div class="card-badge">Popular</div>' : ''}
+          </div>
+          <div class="card-body">
+            <div class="card-header">
+              <div>
+                <div class="card-name">${item.name}</div>
+                <div class="card-category">${item.category}</div>
+              </div>
+              <div class="card-price">₨${item.price}</div>
+            </div>
+            <p class="card-desc">${item.desc}</p>
+            <div class="card-footer">
+              <button class="quick-view">View Details</button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
 
-const menuGrid=document.getElementById('menuGrid');
-const categories=document.getElementById('categories');
+    function getFilteredItems() {
+      let items = menuItems;
+      
+      if (currentCategory !== 'all') {
+        items = items.filter(i => i.category === currentCategory);
+      }
+      
+      switch(currentSort) {
+        case 'price-low':
+          items = [...items].sort((a, b) => a.price - b.price);
+          break;
+        case 'price-high':
+          items = [...items].sort((a, b) => b.price - a.price);
+          break;
+        case 'name':
+          items = [...items].sort((a, b) => a.name.localeCompare(b.name));
+          break;
+      }
+      
+      return items;
+    }
 
-function card(i){return `
-<article class="card" data-cat="${i.category}">
- <div class="media" style="background-image:url('${i.img}')"></div>
- <div class="body">
-  <div class="row">
-    <div><div class="name">${i.name}</div><div class="desc">${i.desc}</div></div>
-    <div class="price">₨ ${i.price}</div>
-  </div>
- </div>
-</article>`}
+    function render() {
+      const items = getFilteredItems();
+      menuGrid.innerHTML = items.map(createCard).join('');
+      resultsInfo.textContent = `Showing ${items.length} item${items.length !== 1 ? 's' : ''}`;
+    }
 
-function render(items){menuGrid.innerHTML=items.map(card).join('')}
-render(menuItems)
+    categories.addEventListener('click', e => {
+      const cat = e.target.closest('.cat');
+      if (!cat) return;
+      
+      document.querySelectorAll('.cat').forEach(c => c.classList.remove('active'));
+      cat.classList.add('active');
+      currentCategory = cat.dataset.cat;
+      render();
+    });
 
-categories.addEventListener('click',e=>{
- const c=e.target.closest('.cat');if(!c)return;
- document.querySelectorAll('.cat').forEach(x=>x.classList.remove('active'));
- c.classList.add('active');
- const cat=c.dataset.cat;
- if(cat==='all')render(menuItems);
- else render(menuItems.filter(i=>i.category===cat));
-});
-</script>
-</body>
-</html>
+    sortBy.addEventListener('change', e => {
+      currentSort = e.target.value;
+      render();
+    });
+
+    render();
+  </script>
