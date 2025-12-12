@@ -69,6 +69,13 @@
       font-weight: 700;
       font-size: 24px;
       box-shadow: 0 4px 12px rgba(212, 160, 23, 0.3);
+      overflow: hidden;
+    }
+
+    .logo-mark img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .logo-text h1 {
@@ -205,7 +212,7 @@
     /* Menu Grid */
     .menu-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
       gap: 1.5rem;
       animation: fadeIn 0.5s;
     }
@@ -223,7 +230,8 @@
       box-shadow: 0 4px 20px var(--shadow);
       border: 1px solid var(--border);
       transition: all 0.3s;
-      cursor: pointer;
+      display: flex;
+      flex-direction: column;
     }
 
     .card:hover {
@@ -232,7 +240,7 @@
     }
 
     .card-media {
-      height: 200px;
+      height: 240px;
       background-size: cover;
       background-position: center;
       position: relative;
@@ -265,6 +273,9 @@
 
     .card-body {
       padding: 1.25rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
     }
 
     .card-header {
@@ -301,11 +312,13 @@
       font-size: 0.9rem;
       margin-bottom: 1rem;
       line-height: 1.5;
+      flex: 1;
     }
 
     .card-footer {
       display: flex;
       gap: 0.5rem;
+      margin-top: auto;
     }
 
     .quick-view {
@@ -318,6 +331,7 @@
       cursor: pointer;
       transition: all 0.3s;
       font-weight: 600;
+      font-size: 0.95rem;
     }
 
     .quick-view:hover {
@@ -325,30 +339,155 @@
       color: white;
     }
 
-    /* Cart Sidebar */
-    /* Removed cart functionality */
-
-    /* Overlay */
-    .overlay {
+    /* Modal */
+    .modal {
       position: fixed;
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
-      background: rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
       opacity: 0;
       visibility: hidden;
       transition: all 0.3s;
-      z-index: 999;
+      padding: 1rem;
     }
 
-    .overlay.active {
+    .modal.active {
       opacity: 1;
       visibility: visible;
     }
 
-    /* Toast */
-    /* Removed toast notifications */
+    .modal-content {
+      background: var(--card);
+      border-radius: 20px;
+      max-width: 700px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      transform: scale(0.9);
+      transition: transform 0.3s;
+    }
+
+    .modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-image {
+      width: 100%;
+      height: 350px;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      width: 40px;
+      height: 40px;
+      background: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .modal-close:hover {
+      transform: rotate(90deg);
+      background: var(--primary);
+      color: white;
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+      margin-bottom: 1rem;
+      gap: 1rem;
+    }
+
+    .modal-title {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .modal-category {
+      display: inline-block;
+      padding: 0.375rem 0.875rem;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+
+    .modal-price {
+      font-size: 2.5rem;
+      font-weight: 900;
+      color: var(--primary);
+      white-space: nowrap;
+    }
+
+    .modal-desc {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      padding: 1.25rem;
+      background: var(--bg);
+      border-radius: 12px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .modal-info {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .info-item {
+      padding: 1rem;
+      background: var(--bg);
+      border-radius: 10px;
+      border: 1px solid var(--border);
+    }
+
+    .info-label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.25rem;
+    }
+
+    .info-value {
+      font-size: 1.1rem;
+      color: var(--text);
+      font-weight: 700;
+    }
 
     /* Footer */
     footer {
@@ -370,14 +509,6 @@
         justify-content: center;
       }
 
-      #searchInput {
-        width: 150px;
-      }
-
-      #searchInput:focus {
-        width: 200px;
-      }
-
       .hero h2 {
         font-size: 2rem;
       }
@@ -385,11 +516,6 @@
       .menu-grid {
         grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
         gap: 1rem;
-      }
-
-      .cart-sidebar {
-        width: 100%;
-        right: -100%;
       }
 
       .filters {
@@ -401,9 +527,30 @@
         width: 100%;
         text-align: center;
       }
-    }
-    a{
-      text-decoration: none;
+
+      .modal-content {
+        margin: 1rem;
+      }
+
+      .modal-image {
+        height: 250px;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+      }
+
+      .modal-title {
+        font-size: 1.5rem;
+      }
+
+      .modal-price {
+        font-size: 2rem;
+      }
+
+      .modal-info {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -411,7 +558,10 @@
   <header>
     <div class="header-content">
       <div class="logo">
-        <div class="logo-mark">S</div>
+        <div class="logo-mark">
+          <!-- Replace this URL with your actual logo image -->
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=200" alt="Sapana Village Lodge Logo">
+        </div>
         <div class="logo-text">
           <h1>Sapana Village Lodges</h1>
           <p>Sauraha, Chitwan • Eco-lodge near Rapti River</p>
@@ -450,7 +600,7 @@
           <option value="name">Name (A-Z)</option>
         </select>
       </div>
-      <div class="results-info" id="resultsInfo">Showing 15 items</div>
+      <div class="results-info" id="resultsInfo">Showing 18 items</div>
     </div>
 
     <section class="menu-grid" id="menuGrid"></section>
@@ -461,28 +611,55 @@
     <p>Reception: +977-56-580116 • Open daily 6:00 AM - 10:00 PM</p>
   </footer>
 
-  <div class="overlay" id="overlay"></div>
+  <!-- Modal -->
+  <div class="modal" id="modal">
+    <div class="modal-content">
+      <div class="modal-image" id="modalImage">
+        <button class="modal-close" onclick="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="modal-header">
+          <div>
+            <h3 class="modal-title" id="modalTitle"></h3>
+            <span class="modal-category" id="modalCategory"></span>
+          </div>
+          <div class="modal-price" id="modalPrice"></div>
+        </div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-info">
+          <div class="info-item">
+            <div class="info-label">Category</div>
+            <div class="info-value" id="modalCategoryValue"></div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Price</div>
+            <div class="info-value" id="modalPriceValue"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <script>
     const menuItems = [
-      {id:1,name:"Breakfast Set A",category:"breakfast",price:450,desc:"Local breakfast with eggs, fresh fruit, and homemade bread.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836",popular:true},
-      {id:2,name:"Breakfast Set B",category:"breakfast",price:480,desc:"Fluffy pancakes with honey and Nepali tea.",img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
-      {id:3,name:"Breakfast Set C",category:"breakfast",price:520,desc:"Garden herb omelette with toast and juice.",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8"},
-      {id:4,name:"Tharu Thali",category:"mains",price:1199,desc:"Authentic Tharu set meal with traditional sides.",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe",popular:true},
-      {id:5,name:"Grilled Chicken Set",category:"mains",price:899,desc:"Tender grilled chicken with steamed rice and vegetables.",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
-      {id:6,name:"Veg Curry Plate",category:"mains",price:750,desc:"Seasonal vegetable curry with rice and lentils.",img:"https://images.unsplash.com/photo-1588166524941-3bf61a9c41db"},
-      {id:7,name:"Dal Bhat Set",category:"mains",price:680,desc:"Traditional Nepali meal with rice, lentils, and curry.",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c"},
-      {id:8,name:"Momos (6 pcs)",category:"snacks",price:350,desc:"Steamed dumplings with spicy achar sauce.",img:"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb",popular:true},
-      {id:9,name:"French Fries",category:"snacks",price:250,desc:"Crispy golden fries with ketchup.",img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
-      {id:10,name:"Tharu Snacks Mix",category:"snacks",price:420,desc:"Assorted local bites and crispy treats.",img:"https://images.unsplash.com/photo-1599490659213-e2b9527bd087"},
-      {id:11,name:"Samosa (3 pcs)",category:"snacks",price:280,desc:"Crispy pastry filled with spiced potatoes.",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950"},
-      {id:12,name:"Fresh Lemon Soda",category:"drinks",price:199,desc:"Refreshing homemade lemon soda.",img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87"},
-      {id:13,name:"Mint Cooler",category:"drinks",price:220,desc:"Cool mint drink with lime and ice.",img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc"},
-      {id:14,name:"Iced Tea",category:"drinks",price:180,desc:"House-made iced tea with lemon.",img:"https://images.unsplash.com/photo-1497534446932-c925b458314e"},
-      {id:15,name:"Mango Lassi",category:"drinks",price:240,desc:"Sweet yogurt drink with fresh mango.",img:"https://images.unsplash.com/photo-1587495545332-d4114e9da2e3"},
-      {id:16,name:"Fruit Yogurt Bowl",category:"dessert",price:350,desc:"Seasonal fruits with creamy yogurt and honey.",img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352"},
-      {id:17,name:"Chocolate Cake Slice",category:"dessert",price:300,desc:"Rich, moist chocolate cake.",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587"},
-      {id:18,name:"Ice Cream Trio",category:"dessert",price:320,desc:"Three scoops - vanilla, chocolate, strawberry.",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"}
+      {id:1,name:"Breakfast Set A",category:"breakfast",price:450,desc:"Start your day with a hearty local breakfast featuring fresh farm eggs cooked to your preference, seasonal tropical fruits from our garden, and warm homemade bread baked daily in our traditional clay oven. Accompanied by Nepali tea or coffee.",img:"https://images.unsplash.com/photo-1504674900247-0877df9cc836",popular:true},
+      {id:2,name:"Breakfast Set B",category:"breakfast",price:480,desc:"Indulge in our fluffy pancakes made from scratch, served with locally sourced honey from Chitwan beekeepers and a generous helping of fresh tropical fruits. Includes your choice of Nepali tea or freshly brewed coffee.",img:"https://images.unsplash.com/photo-1551218808-94e220e084d2"},
+      {id:3,name:"Breakfast Set C",category:"breakfast",price:520,desc:"A healthy and flavorful garden herb omelette made with fresh herbs picked from our organic garden, served with crispy toast, butter, and freshly squeezed seasonal fruit juice. Perfect for a nutritious start to your day.",img:"https://images.unsplash.com/photo-1525351484163-7529414344d8"},
+      {id:4,name:"Tharu Thali",category:"mains",price:1199,desc:"Experience authentic Tharu cuisine with our traditional set meal. This complete thali includes rice, lentil soup (dal), seasonal vegetable curry, pickles (achar), traditional Tharu side dishes, and homemade yogurt. A culinary journey into indigenous Tharu culture.",img:"https://images.unsplash.com/photo-1585937421612-70a008356fbe",popular:true},
+      {id:5,name:"Grilled Chicken Set",category:"mains",price:899,desc:"Tender chicken marinated in aromatic Nepali spices and grilled to perfection over charcoal. Served with fluffy steamed rice, fresh seasonal vegetables, and our signature spicy tomato chutney. A satisfying and flavorful meal.",img:"https://images.unsplash.com/photo-1600891964092-4316c288032e"},
+      {id:6,name:"Veg Curry Plate",category:"mains",price:750,desc:"A wholesome vegetarian feast featuring seasonal vegetable curry prepared with traditional spices, served alongside steamed rice, dal (lentil soup), and pickled vegetables. Nutritious, flavorful, and completely plant-based.",img:"https://images.unsplash.com/photo-1588166524941-3bf61a9c41db"},
+      {id:7,name:"Dal Bhat Set",category:"mains",price:680,desc:"Nepal's most beloved traditional meal. This complete set includes steamed rice, flavorful lentil soup (dal), seasonal vegetable curry, pickles, and papad. Unlimited servings available - eat as much as you like, as is the Nepali tradition!",img:"https://images.unsplash.com/photo-1546069901-ba9599a7e63c"},
+      {id:8,name:"Momos (6 pcs)",category:"snacks",price:350,desc:"Steamed Tibetan-style dumplings filled with your choice of chicken or vegetables, seasoned with aromatic spices. Served with our house-made spicy tomato achar sauce. A beloved Nepali street food favorite!",img:"https://images.unsplash.com/photo-1534422298391-e4f8c172dddb",popular:true},
+      {id:9,name:"French Fries",category:"snacks",price:250,desc:"Crispy golden potato fries, hand-cut and fried to perfection. Served hot with tomato ketchup and a sprinkle of salt. A classic comfort food enjoyed by guests of all ages.",img:"https://images.unsplash.com/photo-1541592106381-b31e9677c0e5"},
+      {id:10,name:"Tharu Snacks Mix",category:"snacks",price:420,desc:"A delightful assortment of traditional Tharu snacks including crispy rice flakes, roasted peanuts, spiced lentil crackers, and other local delicacies. Perfect for sharing or enjoying with your afternoon tea.",img:"https://images.unsplash.com/photo-1599490659213-e2b9527bd087"},
+      {id:11,name:"Samosa (3 pcs)",category:"snacks",price:280,desc:"Crispy triangular pastries filled with spiced potatoes, peas, and aromatic herbs. Deep-fried until golden and served hot with mint chutney and tamarind sauce. A popular Indian-Nepali snack perfect for any time of day.",img:"https://images.unsplash.com/photo-1601050690597-df0568f70950"},
+      {id:12,name:"Fresh Lemon Soda",category:"drinks",price:199,desc:"Refreshing homemade soda prepared with fresh lemons, sparkling water, sugar, and a hint of salt. Perfect for cooling down after a jungle safari or village walk in the warm Chitwan climate.",img:"https://images.unsplash.com/photo-1551024709-8f23befc6f87"},
+      {id:13,name:"Mint Cooler",category:"drinks",price:220,desc:"A revitalizing beverage made with fresh mint leaves from our garden, lime juice, sugar, and ice-cold water. Naturally refreshing and perfect for hot days. Can be made sweet or slightly tangy to your preference.",img:"https://images.unsplash.com/photo-1502741338009-cac2772e18bc"},
+      {id:14,name:"Iced Tea",category:"drinks",price:180,desc:"Our house-made iced tea brewed from quality Nepali tea leaves, chilled to perfection and served with fresh lemon slices. Lightly sweetened and incredibly refreshing - a perfect afternoon drink.",img:"https://images.unsplash.com/photo-1497534446932-c925b458314e"},
+      {id:15,name:"Mango Lassi",category:"drinks",price:240,desc:"A traditional Indian-Nepali yogurt-based drink blended with fresh, ripe mango pulp, milk, and a touch of cardamom. Thick, creamy, and naturally sweet - a delicious and cooling beverage that's also nutritious.",img:"https://images.unsplash.com/photo-1587495545332-d4114e9da2e3"},
+      {id:16,name:"Fruit Yogurt Bowl",category:"dessert",price:350,desc:"A healthy and delicious dessert featuring fresh seasonal fruits (papaya, banana, mango, and more) layered with creamy homemade yogurt and drizzled with local honey. Topped with a sprinkle of granola for added crunch.",img:"https://images.unsplash.com/photo-1495521821757-a1efb6729352"},
+      {id:17,name:"Chocolate Cake Slice",category:"dessert",price:300,desc:"Rich, moist chocolate cake baked fresh in our kitchen using premium cocoa. Perfectly balanced sweetness with a dense, fudgy texture. Served with a dusting of cocoa powder and optional whipped cream.",img:"https://images.unsplash.com/photo-1578985545062-69928b1d9587"},
+      {id:18,name:"Ice Cream Trio",category:"dessert",price:320,desc:"Three generous scoops of premium ice cream in classic flavors: creamy vanilla, rich chocolate, and sweet strawberry. Served in a chilled bowl and perfect for sharing or enjoying on your own after a delicious meal.",img:"https://images.unsplash.com/photo-1563805042-7684c019e1cb"}
     ];
 
     let currentCategory = 'all';
@@ -492,10 +669,11 @@
     const categories = document.getElementById('categories');
     const sortBy = document.getElementById('sortBy');
     const resultsInfo = document.getElementById('resultsInfo');
+    const modal = document.getElementById('modal');
 
     function createCard(item) {
       return `
-        <article class="card" data-id="${item.id}">
+        <article class="card" onclick="openModal(${item.id})">
           <div class="card-media" style="background-image:url('${item.img}')">
             ${item.popular ? '<div class="card-badge">Popular</div>' : ''}
           </div>
@@ -507,9 +685,9 @@
               </div>
               <div class="card-price">₨${item.price}</div>
             </div>
-            <p class="card-desc">${item.desc}</p>
+            <p class="card-desc">${item.desc.substring(0, 80)}...</p>
             <div class="card-footer">
-              <button class="quick-view">View Details</button>
+              <button class="quick-view" onclick="event.stopPropagation(); openModal(${item.id})">View Details</button>
             </div>
           </div>
         </article>
@@ -544,6 +722,41 @@
       resultsInfo.textContent = `Showing ${items.length} item${items.length !== 1 ? 's' : ''}`;
     }
 
+    function openModal(id) {
+      const item = menuItems.find(i => i.id === id);
+      if (!item) return;
+
+      document.getElementById('modalImage').style.backgroundImage = `url('${item.img}')`;
+      document.getElementById('modalTitle').textContent = item.name;
+      document.getElementById('modalCategory').textContent = item.category;
+      document.getElementById('modalPrice').textContent = `₨${item.price}`;
+      document.getElementById('modalDesc').textContent = item.desc;
+      document.getElementById('modalCategoryValue').textContent = item.category.charAt(0).toUpperCase() + item.category.slice(1);
+      document.getElementById('modalPriceValue').textContent = `₨${item.price}`;
+
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    // Close modal on outside click
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) {
+        closeModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('active')) {
+        closeModal();
+      }
+    });
+
     categories.addEventListener('click', e => {
       const cat = e.target.closest('.cat');
       if (!cat) return;
@@ -561,3 +774,5 @@
 
     render();
   </script>
+</body>
+</html>
