@@ -60,8 +60,9 @@
     .logo-mark {
       width: 60px;
       height: 60px;
-      border-radius: 14px;
+      border-radius: 50%;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+
       display: flex;
       align-items: center;
       justify-content: center;
@@ -73,9 +74,9 @@
     }
 
     .logo-mark img {
-      width: 100%;
+      width: 120%;
       height: 100%;
-      object-fit: cover;
+      object-fit: contain;
     }
 
     .logo-text h1 {
@@ -552,6 +553,10 @@
         grid-template-columns: 1fr;
       }
     }
+    a{
+      text-decoration: none;
+      color: black;
+    }
   </style>
 </head>
 <body>
@@ -560,11 +565,11 @@
       <div class="logo">
         <div class="logo-mark">
           <!-- Replace this URL with your actual logo image -->
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=200" alt="Sapana Village Lodge Logo">
+          <img src="./assets/notext.png" alt="Sapana Village Lodge Logo">
         </div>
         <div class="logo-text">
-          <h1>Sapana Village Lodges</h1>
-          <p>Sauraha, Chitwan • Eco-lodge near Rapti River</p>
+          <h1>Sapana Village Lodge</h1>
+          <p>Sauraha-7, Chitwan • Eco-lodge near Rapti River</p>
         </div>
       </div>
       <div class="header-actions">
@@ -577,7 +582,7 @@
 
   <main>
     <section class="hero">
-      <h2>Our Digital Menu</h2>
+      <h2>Sapana Village Lodge – Digital Menu</h2>
       <p class="hero-subtitle">Authentic Tharu cuisine & international favorites</p>
     </section>
 
